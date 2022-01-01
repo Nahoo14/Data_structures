@@ -65,12 +65,6 @@ class Tree{
         }
         return false;
     }
-    void display_helper(Node * curr){
-        if (curr->left!=nullptr)
-            cout << curr->left->value << endl;
-        else if(curr->right!=nullptr)
-            cout << curr->right->value << endl;
-    }
     void inode_display(){
         stack <Node *> s;
         Node *iter = this->root;
