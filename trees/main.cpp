@@ -1,4 +1,5 @@
 #include <iostream>
+#include <stack>
 
 using namespace std;
 
@@ -70,17 +71,20 @@ class Tree{
         else if(curr->right!=nullptr)
             cout << curr->right->value << endl;
     }
-    void display(){
-        if(this->root==nullptr){
-            cout << "Nothing to display" << endl;
-        }
-        else{
-            cout << this->root->value << endl;
-            Node * iter = this->root;
+    void inode_display(){
+        stack <Node *> s;
+        Node *iter = this->root;
+        while((iter!=nullptr)||!s.empty()){
+            //cout << "new left Iter value = " << iter->value << endl;  
             while(iter!=nullptr){
-                display_helper(iter);
+                s.push(iter);
+                iter = iter->left;
             }
-        }
+            iter = s.top();
+            cout << iter->value << endl;
+            s.pop();
+            iter = iter -> right;
+    }
     } 
 
 };
@@ -95,7 +99,7 @@ int main(){
     t->insert(6);
     t->insert(15);
     t->insert(170);
-    t->display();
+    t->inode_display();
 
     // cout << t->root->value << endl;
     // cout << t->root->left->value << endl;
